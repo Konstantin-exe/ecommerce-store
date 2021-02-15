@@ -4,10 +4,12 @@ import Image from 'next/image';
 export const globalStyles = (
   <Global
     styles={css`
-      html,
-      body::before {
+      html::before {
         content: '';
         position: fixed;
+        /* background-size: cover; */
+        /* background-attachment: fixed; */
+        background-repeat: no-repeat;
         z-index: -100;
         width: 100%;
         height: 100%;
@@ -22,16 +24,16 @@ export const globalStyles = (
             transparent,
             #ff00a0
           );
-        animation: bg-change 10s infinite;
+        animation: bg-change 20s infinite;
       }
 
       @keyframes bg-change {
         0%,
         100% {
-          filter: hue-rotate(0deg);
+          filter: hue-rotate(-45deg);
         }
         50% {
-          filter: hue-rotate(-45deg);
+          filter: hue-rotate(50deg);
         }
       }
       body {
@@ -45,11 +47,6 @@ export const globalStyles = (
         margin: 0;
         font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
           Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
       }
 
       * {

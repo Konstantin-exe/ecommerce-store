@@ -9,6 +9,9 @@ export default function ShopItem(props) {
         <title>{props.shopItem.itemName}</title>
       </Head>
       <h1>{props.shopItem.itemName}</h1>
+      <img src={props.shopItem.imgUrl} alt={props.shopItem.itemName} />
+      <p>{props.shopItem.longDescription}</p>
+      <button>Add Item To Cart</button>
     </Layout>
   );
 }
