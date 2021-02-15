@@ -8,7 +8,13 @@ export default function Layout(props) {
       <Head>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header style={{ padding: 9, border: '1px solid #ddd' }}>
+      <header
+        style={{
+          padding: 9,
+          border: '1px solid #ddd',
+          backgroundColor: '#FF00FF',
+        }}
+      >
         <nav
           style={{
             display: 'flex',
@@ -19,7 +25,7 @@ export default function Layout(props) {
         >
           <Link href="/">
             <a>
-              <img src="/head.png" alt="head" width={40} height={40} />
+              <img src="img/head.png" alt="head" width={40} height={40} />
             </a>
           </Link>
           <Link href="/store">
@@ -31,7 +37,7 @@ export default function Layout(props) {
         </nav>
       </header>
       <a style={{ position: 'fixed', zIndex: -2 }}>
-        <img src="/page-background.png" alt="" height={700} width={1000} />
+        <img src="img/page-background.png" alt="" height={700} width={1000} />
       </a>
       {props.children}
       <footer>footer</footer>

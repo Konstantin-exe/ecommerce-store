@@ -9,7 +9,7 @@ export default function Home() {
       <Head>
         <title>Universe Store</title>
       </Head>
-      <h1>SHOW ME WHAT YOU GOT - Store</h1>
+      <h1>SHOW ME WHAT YOU GOT</h1>
     </Layout>
   );
 }
