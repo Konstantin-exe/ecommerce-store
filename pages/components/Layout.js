@@ -28,7 +28,7 @@ export default function Layout(props) {
               <img src="img/head.png" alt="head" width={40} height={40} />
             </a>
           </Link>
-          <Link href="/store">
+          <Link href="/items">
             <a>Store</a>
           </Link>
           <Link href="/cart">

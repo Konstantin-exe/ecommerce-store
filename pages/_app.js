@@ -7,7 +7,10 @@ export const globalStyles = (
       html,
       body::before {
         content: '';
-        position: fixed;
+        /* position: fixed; */
+        background-size: cover;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
         z-index: -100;
         width: 100%;
         height: 100%;

@@ -1,7 +1,9 @@
+// import fs here
+
 export function getItemInfo() {
   return [
     {
-      id: 0,
+      id: '0',
       itemName: 'Teleporter',
       price: 1000000,
       quantity: 1,
@@ -13,7 +15,7 @@ export function getItemInfo() {
     },
 
     {
-      id: 1,
+      id: '1',
       itemName: 'Meeseek Box',
       price: 5500,
       quantity: 695,
@@ -25,11 +27,11 @@ export function getItemInfo() {
     },
 
     {
-      id: 2,
+      id: '2',
       itemName: 'Mega Seed',
       price: 8599,
       quantity: 16,
-      imgUrl: '/img/Mega-Seed.png',
+      imgUrl: '/img/Mega_Seed.png',
       shortDescription:
         'They are found inside the fruit of the Mega Trees in Dimension 35-C.',
       longDescription:
@@ -37,11 +39,11 @@ export function getItemInfo() {
     },
 
     {
-      id: 3,
+      id: '3',
       itemName: 'Plumbus',
       price: 150,
       quantity: 1000000,
-      imgUrl: '/img/plumbus.jpg',
+      imgUrl: '/img/plumbus.png',
       shortDescription:
         'A Plumbus is an all-purpose home device. Everyone knows what it does, so there is no reason to explain it.',
       longDescription:
