@@ -7,10 +7,7 @@ export const globalStyles = (
       html,
       body::before {
         content: '';
-        /* position: fixed; */
-        background-size: cover;
-        background-attachment: fixed;
-        background-repeat: no-repeat;
+        position: fixed;
         z-index: -100;
         width: 100%;
         height: 100%;
@@ -38,7 +35,12 @@ export const globalStyles = (
         }
       }
       body {
-        background-image: url('../public/page-background.png');
+        background-image: url('/img/page-background.png');
+        background-attachment: fixed;
+        background-size: center;
+        background-position: center;
+        height: 100vh;
+        background-repeat: no-repeat;
         padding: 0;
         margin: 0;
         font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,

@@ -25,7 +25,7 @@ export default function Layout(props) {
         >
           <Link href="/">
             <a>
-              <img src="img/head.png" alt="head" width={40} height={40} />
+              <img src="/img/head.png" alt="head" width={40} height={40} />
             </a>
           </Link>
           <Link href="/items">
@@ -36,9 +36,9 @@ export default function Layout(props) {
           </Link>
         </nav>
       </header>
-      <a style={{ position: 'fixed', zIndex: -2 }}>
-        <img src="img/page-background.png" alt="" height={700} width={1000} />
-      </a>
+      {/* <a style={{ position: 'fixed', zIndex: -2 }}>
+        <img src="/img/page-background.png" alt="" height={700} width={1000} />
+      </a> */}
       {props.children}
       <footer>footer</footer>
     </>
