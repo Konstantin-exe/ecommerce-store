@@ -12,6 +12,7 @@ export const globalStyles = (
         background-repeat: no-repeat;
         z-index: -100;
         width: 100%;
+        min-width: 480px;
         height: 100%;
         background-color: #14c2cc;
         background-image: radial-gradient(
@@ -37,16 +38,22 @@ export const globalStyles = (
         }
       }
       body {
-        background-image: url('/img/page-background.png');
-        background-attachment: fixed;
+        /* background-image: url('/img/page-background.png'); */
+        /* background-attachment: fixed;
         background-size: center;
-        background-position: center;
+        background-position: center; */
+        /* background-repeat: no-repeat; */
+        position: relative;
         height: 100vh;
-        background-repeat: no-repeat;
         padding: 0;
         margin: 0;
         font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
           Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+      }
+
+      h1 {
+        font-size: 100px;
+        color: #61ffe7;
       }
 
       * {
