@@ -41,13 +41,68 @@ export function getItemInfo() {
     {
       id: '3',
       itemName: 'Plumbus',
-      price: 150,
+      price: 99,
       quantity: 1000000,
       imgUrl: '/img/plumbus.png',
       shortDescription:
         'A Plumbus is an all-purpose home device. Everyone knows what it does, so there is no reason to explain it.',
       longDescription:
         'A Plumbus is an all-purpose home device. Everyone knows what it does, so there is no reason to explain it. It is described as a common household and office item that is also used as an accent piece to a room. According to Stealy, Plumbuses are worth six-and-a-half Brapples. Plumbuses are created on Plumbubo Prime 51b. They use Mortys for maintenance and other menial tasks. Known employees are Plumbus Slave Morty, Plumbus Worker Morty, Plumbus Master Morty, Plumbus Prawn Morty, and Plumbonia Morty. Working in a factory is very dangerous for a Morty. Repurposed Fleeb Juice, combined with tight spaces, can cause a Morty/Alien hybrid such as Plumbonia Morty. Morty/Plumbus protein strands can cause mutations to occur in Mortys such as Plumbus Prawn Morty. In Rick and Morty: Virtual Rick-ality, Rick has a Plumbus in the garage. The Plumbus can be combined with other items to create different colors of Plumbus. One of the aliens that work at the plumbus factory are Blamphs, and another is a Shlaammi.',
+    },
+
+    {
+      id: '4',
+      itemName: 'Super Suit',
+      price: 2,
+      quantity: 67120,
+      imgUrl: '/img/Super_Suit.png',
+      shortDescription:
+        'The Power armor or Purge suits, were built by Rick as a fail-safe device',
+      longDescription:
+        'These suits, also called the Power armor or Purge suits, were built by Rick as a fail-safe device in case of multiple contingency scenarios (i.e. getting stranded on an hostile world without his Portal Gun/Space Ship) as an FTL automatized small pod, able to deploy up to two suits. Once deployed, it can rocket itself through space from planet to planet to meet its user and then uses a yellow energy beam to materialize the suit over the wearer. The Combat Suit is a full body armor (except for the face) that protects the user from basic contusion/cutting weapons, as well as enhances the users strength and resilience to inhuman levels. This allows a user to be completely unfazed by attacks, as Morty was surrounded and struck on all sides without being hurt at all. In addition, the suits inhuman strength allows a user to effortlessly break, rip and tear through bone, rock, and flesh, as Rick, Morty and Arthricia literally tore through the bodies of any one that they fought, rending many of their victims a mere bloody pulp or multilated husks. The suits also include missiles, energy guns that cause bloody wounds, a flame thrower mounted on the wrist, a non lethal electrical blast that knocks a target unconscious for hours, arm mounted melee blades and buzzsaws, a rocket propulsion system on the boots, the exhaust of which can be weaponized, and a Music System with speakers on the shoulders.',
+    },
+    {
+      id: '5',
+      itemName: 'Butter Robot',
+      price: 6100,
+      quantity: 10,
+      imgUrl: '/img/Butter_Robot.png',
+      shortDescription:
+        'The Butter Robot is a small, two armed, mobile, sentient robot Rick Sanchez created for the sole purpose of passing butter.',
+      longDescription:
+        'Upon its creation, it asks Rick, "What is my purpose?", in response, Rick tells it to pass the butter. Moments after completing its task, the Robot repeats, "What is my purpose?" Rick clarifies that it passes butter. It looks down realizing its sole reason for existence is for something so mundane and says "Oh my god." Rick responds "Yeah, welcome to the club, pal." Later on, while Rick is dining alone, the Robot passive-aggressively slams a whole stick of butter in Ricks food tray, then spurns his offer to see a movie by answering: "I am not programmed for friendship." The Butter Robot returns in a Rick and Morty commercial for Old Spice, and is tossed around, and eventually eaten, and damaged by three giant anthropomorphic Old Spice spray cans - this example is damage free tough!',
+    },
+    {
+      id: '6',
+      itemName: 'Gwendolyn',
+      price: 550,
+      quantity: 10359,
+      imgUrl: '/img/Gwendolyn_Doll.png',
+      shortDescription:
+        'Gwendolyn is a sex robot originally from  a pawn shop in outer space.',
+      longDescription:
+        'The robot produces Gazorpian offspring, and is made by female Gazorpazorps to sustain the population. They are sent out to have intercourse with male Gazorpians and then sent back to their base to "give birth". If the offspring is female, they will take care of it and raise it properly. If the offspring is male, they will abandon them outside, because of their destructive behaviour, or as they call it, they "get to play outside".',
+    },
+    {
+      id: '7',
+      itemName: 'Microverse Battery',
+      price: 2,
+      quantity: 520000,
+      imgUrl: '/img/Microverse_Battery.png',
+      shortDescription:
+        'The Microverse Battery is a gadget developed by Rick to supply power to his flying ship.',
+      longDescription:
+        'The Microverse Battery contains a miniature universe with a planet inhabited by intelligent life. These lifeforms use kinetic devices, which were given to them by Rick, to produce electricity. Under the guise of "waste power" a majority of the energy produced is extracted by Rick to power his ship. The people of this world consider Rick to be a benevolent alien, when in fact, he is using them as slaves. Trouble occurs when a scientist in this miniature world, Zeep Xanflorp, invents his own Microverse Battery (which he calls a Miniverse) to provide his people with energy, thus making the kinetic devices Rick installed obsolete. Rick describes creating a "spatially tessellated void inside a modified temporal field", while Zeep Xanflorp describes his Miniverse as an "unbounded vacuum inside a temporal field". The temporal fields of the Miniverse and Teenyverse are known to speed up time inside the universes relative to the outside, but this is unclear in the case of the Microverse. ',
+    },
+
+    {
+      id: '8',
+      itemName: 'A Pickle',
+      price: 0,
+      quantity: 0,
+      imgUrl: '/img/pickle.png',
+      shortDescription: 'Its just a pickle...',
+      longDescription: '???',
     },
   ];
 }
