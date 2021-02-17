@@ -38,13 +38,14 @@ export const globalStyles = (
         }
       }
       body {
-        /* background-image: url('/img/page-background.png'); */
-        /* background-attachment: fixed;
+        /* background-image: url('/img/page-background.png');
+        z-index: 1000000;
+        background-attachment: fixed;
         background-size: center;
-        background-position: center; */
-        /* background-repeat: no-repeat; */
+        background-position: center;
+        background-repeat: no-repeat;
         position: relative;
-        height: 100vh;
+        height: 100vh; */
         padding: 0;
         margin: 0;
         font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -54,6 +55,23 @@ export const globalStyles = (
       h1 {
         font-size: 100px;
         color: #61ffe7;
+        text-align: center;
+        margin-top: 100px;
+        margin-bottom: 50px;
+        -webkit-animation: pulsate 3s ease-out;
+        -webkit-animation-iteration-count: infinite;
+        opacity: 0.5;
+      }
+      @-webkit-keyframes pulsate {
+        0% {
+          opacity: 0.7;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.7;
+        }
       }
 
       * {

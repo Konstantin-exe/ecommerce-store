@@ -6,6 +6,8 @@ import {
   storeItemList,
   storeItemListSingle,
   storeItemListCard,
+  storeItemListInfo,
+  storeItemListInfoImg,
 } from '../../styles/styles';
 
 const itemInfo = getItemInfo();
@@ -18,16 +20,19 @@ export default function Store(props) {
         <title>Show me your Store</title>
       </Head>
       <h1>Store</h1>
-      <h2>This will become the Store Page</h2>
       <div css={storeItemList}>
         {props.itemInfo.map((item) => (
           <div css={storeItemListSingle} key={item.id}>
-            <img src={item.imgUrl} alt={item.itemName} />
+            <Link href={`/items/${item.id}`}>
+              <img src={item.imgUrl} alt={item.itemName} />
+            </Link>
             <h4>{item.itemName} </h4>
             <p>{item.shortDescription}</p>
-            <Link href={`/items/${item.id}`}>
-              <a>Get more Info</a>
-            </Link>
+            <div css={storeItemListInfo}>
+              <p>In Stock: {item.quantity}</p>
+              <p>price: {item.price} SHM</p>
+              {/* <img src="../img/smh.png" alt="Schmekls" /> */}
+            </div>
             <div css={storeItemListCard} key={Math.random()} />
           </div>
         ))}

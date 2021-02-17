@@ -29,9 +29,20 @@ export default function Layout(props) {
           </div>
         </nav>
       </header>
-      <a style={{ position: 'fixed', zIndex: -2, backgroundSize: 'center' }}>
-        <img src="/img/page-background.png" alt="" height={1000} width={1000} />
-      </a>
+      {/* <a>
+        <img
+          src="/img/page-background.png"
+          alt=""
+          height={1000}
+          width={1000}
+          style={{
+            position: 'fixed',
+            zIndex: -2,
+            backgroundPosition: 'center',
+            backgroundSize: 'center',
+          }}
+        />
+      </a> */}
       {props.children}
       <footer>footer</footer>
     </>
