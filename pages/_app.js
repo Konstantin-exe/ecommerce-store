@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { css, Global } from '@emotion/react';
 import Image from 'next/image';
 
@@ -56,11 +57,12 @@ export const globalStyles = (
         font-size: 100px;
         color: #61ffe7;
         text-align: center;
-        margin-top: 100px;
+        margin-top: 66px;
         margin-bottom: 50px;
-        -webkit-animation: pulsate 3s ease-out;
+        -webkit-animation: pulsate 2s ease-out;
         -webkit-animation-iteration-count: infinite;
         opacity: 0.5;
+        text-shadow: white 1px 1px 4px;
       }
       @-webkit-keyframes pulsate {
         0% {
@@ -72,6 +74,15 @@ export const globalStyles = (
         100% {
           opacity: 0.7;
         }
+      }
+
+      h2 {
+        font-size: 50px;
+        color: #61ffe7;
+        text-align: center;
+        margin-top: 100px;
+        margin-bottom: 50px;
+        text-shadow: whitesmoke 1px 1px 1px;
       }
 
       * {

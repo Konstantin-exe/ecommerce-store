@@ -1,5 +1,23 @@
 import { css, Global } from '@emotion/react';
 
+// Home
+export const homeHeading = css`
+  margin-bottom: 0px;
+`;
+export const homeHead = css`
+  display: block;
+  z-index: -1;
+  height: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+// Shop Item Site
 export const navBar = css`
   position: fixed;
   width: 100%;
@@ -64,6 +82,8 @@ export const storeItemListSingle = css`
   min-height: 350px;
   margin: 20px;
   border-radius: 30px;
+  box-shadow: 3px 2px 10px 0 white;
+  transition: 2s;
 
 
   img {
@@ -77,7 +97,9 @@ export const storeItemListSingle = css`
   }
   img:hover {
       cursor: pointer;
+      transform: scale(1.3);
     }
+
 
   h4 {
     text-align: center;
@@ -114,18 +136,70 @@ export const storeItemListInfo = css`
   margin-bottom: 0; */
 `;
 
-export const homeHeading = css`
-  margin-bottom: 0px;
-`;
-export const homeHead = css`
+// Single Item Page
+export const singleItemPage = css`
   display: block;
-  z-index: -1;
-  height: 100%;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0;
-  :hover {
-    cursor: pointer;
+  justify-content: center;
+  min-width: 480px;
+  width: 50%;
+  margin: auto;
+  background-color: yellow;
+  border-radius: 10px;
+  box-shadow: 4px 2px 20px 0 white;
+
+  img {
+    margin: 30px;
+    width: 250px;
+    height: 100%;
   }
+  p {
+    text-align: center;
+    font-size: 17px;
+    line-height: 1.3;
+    letter-spacing: 0.5px;
+    padding: 20px;
+  }
+
+  div {
+  }
+`;
+
+export const singleItemPageBuyField = css`
+  border: 2px solid grey;
+  border-radius: 15px;
+  width: 200px;
+  float: right;
+  padding: 20px;
+  margin: 30px;
+
+  a {
+    color: grey;
+
+    :nth-child(1) {
+      color: #b12704;
+      line-height: 24px;
+      font-size: 18px;
+    }
+  }
+
+  button {
+    margin-top: 30px;
+    padding: 10px;
+    background-color: yellowgreen;
+    color: black;
+    font-size: 16px;
+    border-radius: 5px;
+x;
+  }
+`;
+
+export const backToStoreButton = css`
+  position: fixed;
+  padding: 10px;
+  background-color: yellowgreen;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 2px;
+  left: 30px;
+  top: 100px;
 `;

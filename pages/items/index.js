@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../components/Layout';
@@ -19,7 +21,10 @@ export default function Store(props) {
       <Head>
         <title>Show me your Store</title>
       </Head>
-      <h1>Store</h1>
+      <h2>
+        Nobody exists on purpose, nobody belongs anywhere, everybodys gonna
+        die... <br /> Go buy some stuff!
+      </h2>
       <div css={storeItemList}>
         {props.itemInfo.map((item) => (
           <div css={storeItemListSingle} key={item.id}>
