@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
+import postgres from 'postgres';
 import { css } from '@emotion/react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../components/Layout';
-import { getItemInfo } from '../../utils/database';
 import {
   storeItemList,
   storeItemListSingle,
@@ -11,8 +11,7 @@ import {
   storeItemListInfo,
   storeItemListInfoImg,
 } from '../../styles/styles';
-
-const itemInfo = getItemInfo();
+import { getShopItems } from '../../utils/database';
 
 export default function Store(props) {
   console.log(props);
@@ -36,7 +35,6 @@ export default function Store(props) {
             <div css={storeItemListInfo}>
               <p>In Stock: {item.quantity}</p>
               <p>price: {item.price} SHM</p>
-              {/* <img src="../img/smh.png" alt="Schmekls" /> */}
             </div>
             <div css={storeItemListCard} key={Math.random()} />
           </div>
@@ -46,11 +44,8 @@ export default function Store(props) {
   );
 }
 
-export async function getServerSideProps() {
-  const { getItemInfo } = await import('../../utils/database');
-
-  const itemInfo = getItemInfo();
-  console.log('i', itemInfo);
+export async function getStaticProps() {
+  const itemInfo = await getShopItems();
 
   return {
     props: {
