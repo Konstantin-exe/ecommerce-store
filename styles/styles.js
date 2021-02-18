@@ -47,13 +47,13 @@ export const storeItemListCard = css`
   background-color: yellow;
   max-width: 480px;
   min-width: 480px;
-  max-height: 360px;
-  min-height: 360px;
+  max-height: 3800px;
+  min-height: 380px;
   margin: 20px;
   border-radius: 100px;
   z-index: -1;
-  opacity: 0.8;
-  -webkit-filter: blur(7px); */
+  /* opacity: 0.9; */
+  -webkit-filter: blur(70px); */
 `;
 
 export const storeItemListSingle = css`
@@ -63,7 +63,7 @@ export const storeItemListSingle = css`
   max-height: 350px;
   min-height: 350px;
   margin: 20px;
-  border-radius: 40px;
+  border-radius: 30px;
 
 
   img {
