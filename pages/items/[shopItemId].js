@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import Link from 'next/link';
 import Head from 'next/head';
 import Layout from '../components/Layout';
-import { getShopItems } from '../../utils/database';
+// import { getShopItems } from '../../utils/database';
 import styles, {
   backToStoreButton,
   singleItemPage,
@@ -36,8 +36,9 @@ export default function ShopItem(props) {
   );
 }
 
-export async function getStaticProps() {
-  const itemInfo = await getShopItems();
+export async function getStaticPath() {
+  const { getItemById } = await import('../../utils/database');
+  const itemInfo = await getItemById();
 
   return {
     props: {

@@ -1,10 +1,8 @@
 import postgres from 'postgres';
-import { createRequire } from 'module';
 import camelcaseKeys from 'camelcase-keys';
+require('dotenv-safe').config();
 
 const sql = postgres();
-
-// await sql`SELECT * FROM shop_items`;
 
 export async function getItemInfo() {
   const items = camelcaseKeys(await sql`SELECT * FROM shop_items`);
@@ -13,6 +11,9 @@ export async function getItemInfo() {
   return items;
 }
 
-async function getItemById(id) {
-  return await sql`SELECT * FROM shop_items WHERE id = ${id}`;
+export async function getItemById(id) {
+  const matchingItem = camelcaseKeys(
+    await sql`SELECT * FROM shop_items WHERE id = ${id}`,
+  );
+  return matchingItem;
 }

@@ -8,7 +8,6 @@ import {
   storeItemListSingle,
   storeItemListCard,
   storeItemListInfo,
-  storeItemListInfoImg,
 } from '../../styles/styles';
 // import { getShopItems } from '../../utils/database';
 
