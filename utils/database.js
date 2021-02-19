@@ -1,8 +1,9 @@
 import postgres from 'postgres';
 import { createRequire } from 'module';
 
-const require = createRequire(import.meta.url);
-require('dotenv-safe').config();
+// const require = createRequire(import.meta.url);
+// require('dotenv-safe').config();
+
 // export function getItemInfo() {
 //   return [
 //     {
@@ -114,11 +115,9 @@ const sql = postgres();
 
 await sql`SELECT * FROM shop_items`;
 
-export async function getShopItems() {
+export async function getItemInfo() {
   const items = await sql`SELECT * FROM shop_items`;
   console.log(items);
 
   return items;
 }
-
-getShopItems();

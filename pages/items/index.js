@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import postgres from 'postgres';
 import { css } from '@emotion/react';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -11,7 +10,7 @@ import {
   storeItemListInfo,
   storeItemListInfoImg,
 } from '../../styles/styles';
-import { getShopItems } from '../../utils/database';
+// import { getShopItems } from '../../utils/database';
 
 export default function Store(props) {
   console.log(props);
@@ -21,7 +20,7 @@ export default function Store(props) {
         <title>Show me your Store</title>
       </Head>
       <h2>
-        Nobody exists on purpose, nobody belongs anywhere, everybodys gonna
+        Nobody exists on purpose, nobody belongs anywhere, everybody's gonna
         die... <br /> Go buy some stuff!
       </h2>
       <div css={storeItemList}>
@@ -45,7 +44,8 @@ export default function Store(props) {
 }
 
 export async function getStaticProps() {
-  const itemInfo = await getShopItems();
+  const { getItemInfo } = await import('../../utils/database');
+  const itemInfo = await getItemInfo();
 
   return {
     props: {
