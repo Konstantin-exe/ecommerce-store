@@ -6,8 +6,6 @@ const sql = postgres();
 
 export async function getItemInfo() {
   const items = camelcaseKeys(await sql`SELECT * FROM shop_items`);
-  console.log(items);
-
   return items;
 }
 

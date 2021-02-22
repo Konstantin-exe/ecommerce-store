@@ -9,7 +9,6 @@ import {
   storeItemListCard,
   storeItemListInfo,
 } from '../../styles/styles';
-// import { getShopItems } from '../../utils/database';
 
 export default function Store(props) {
   console.log(props);
@@ -23,7 +22,7 @@ export default function Store(props) {
         die... <br /> Go buy some stuff!
       </h2>
       <div css={storeItemList}>
-        {props.itemInfo.map((item) => (
+        {props.itemInfos.map((item) => (
           <div css={storeItemListSingle} key={item.id}>
             <Link href={`/items/${item.id}`}>
               <img src={item.imgUrl} alt={item.itemName} />
@@ -44,11 +43,11 @@ export default function Store(props) {
 
 export async function getStaticProps() {
   const { getItemInfo } = await import('../../utils/database');
-  const itemInfo = await getItemInfo();
+  const itemInfos = await getItemInfo();
 
   return {
     props: {
-      itemInfo: itemInfo,
+      itemInfos: itemInfos,
     },
   };
 }
