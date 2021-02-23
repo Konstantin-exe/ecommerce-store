@@ -14,49 +14,34 @@ import Cart from './cart';
 
 export default function ShopItem(props) {
   const [quantity, setQuantity] = useState(1);
-  console.log(props);
+  console.log(props.cart);
 
-  function stackingMatchingItems(id, product) {
-    const newCart = [
-      {
-        name: product.itemName,
-        quantity: quantity,
-        id: product.id,
-        price: product.price,
-      },
-    ];
-    return props.cart.reduce(function (acc, cartItem) {
+  function addToCart(id, product) {
+    const productAlreadyInCart = props.cart.find((cartItem) => {
       if (cartItem.id === id) {
-        const newQuantity = cartItem.quantity + quantity;
-        return { ...cartItem, quantity: newQuantity };
-        // } else {
-        // return { ...newCart };
+        return true;
+      } else {
+        return false;
       }
-    }, newCart);
+    });
+    if (!productAlreadyInCart) {
+      return [
+        ...props.cart,
+        {
+          name: product.itemName,
+          quantity: quantity,
+          id: product.id,
+          price: product.price,
+        },
+      ];
+    }
+    let newCart = [...props.cart];
+    let productIndex = newCart.findIndex((cartItem) => {
+      return cartItem.id === productAlreadyInCart.id;
+    });
+    newCart[productIndex].quantity += quantity;
+    return newCart;
   }
-
-  // let newCart = [
-  //   ...props.cart,
-  //   {
-  //     name: product.itemName,
-  //     quantity: quantity,
-  //     id: product.id,
-  //     price: product.price,
-  //   },
-  // ];
-  //   return newCart.map((cartItem) => {
-  //     if (cartItem.id === id) {
-  //       let newQuantity = cartItem.quantity + quantity;
-  //       return { ...cartItem, quantity: newQuantity };
-  //     } else {
-  //       return { ...cartItem };
-  //     }
-  //   });
-  //   .reduce((acc, cartItem) => {
-  //   todo: return accom. with item of the biggest quantity.
-  //   return acc;
-  //   }
-  //   );
 
   return (
     <Layout>
@@ -99,9 +84,7 @@ export default function ShopItem(props) {
           <span>Sum: {props.itemInfo.price * quantity} SMH</span>
           <button
             onClick={() => {
-              props.setCart(
-                stackingMatchingItems(props.itemInfo.id, props.itemInfo),
-              );
+              props.setCart(addToCart(props.itemInfo.id, props.itemInfo));
             }}
           >
             Add Item(s) To Cart

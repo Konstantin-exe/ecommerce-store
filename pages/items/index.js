@@ -11,7 +11,7 @@ import {
 } from '../../styles/styles';
 
 export default function Store(props) {
-  console.log(props);
+  console.log(props.itemInfos);
   return (
     <Layout>
       <Head>
