@@ -3,50 +3,108 @@ import { css } from '@emotion/react';
 import Link from 'next/link';
 import Head from 'next/head';
 import Layout from '../components/Layout';
-import { getItemInfo } from '../../utils/database';
 import styles, {
   backToStoreButton,
   singleItemPage,
   singleItemPageBuyField,
 } from '../../styles/styles';
+import { getItemInfo } from '../../utils/database';
+import { useState } from 'react';
+import Cart from './cart';
 
 export default function ShopItem(props) {
+  const [quantity, setQuantity] = useState(1);
+  console.log(props.cart);
+
+  function addToCart(id, product) {
+    const productAlreadyInCart = props.cart.find((cartItem) => {
+      if (cartItem.id === id) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    if (!productAlreadyInCart) {
+      return [
+        ...props.cart,
+        {
+          name: product.itemName,
+          quantity: quantity,
+          id: product.id,
+          price: product.price,
+        },
+      ];
+    }
+    let newCart = [...props.cart];
+    let productIndex = newCart.findIndex((cartItem) => {
+      return cartItem.id === productAlreadyInCart.id;
+    });
+    newCart[productIndex].quantity += quantity;
+    return newCart;
+  }
+
   return (
     <Layout>
       <Head>
-        <title>{props.shopItem.itemName}</title>
+        <title>{props.itemInfo.itemName}</title>
       </Head>
-      <h1>{props.shopItem.itemName}</h1>
+      <h1>{props.itemInfo.itemName}</h1>
       <Link href={`/items`}>
         <button css={backToStoreButton} href={`/items`}>
           Back to store
         </button>
       </Link>
       <div css={singleItemPage}>
-        <img src={props.shopItem.imgUrl} alt={props.shopItem.itemName} />
+        <img src={props.itemInfo.imgUrl} alt={props.itemInfo.itemName} />
         <div css={singleItemPageBuyField}>
-          <a>{props.shopItem.price} SMH</a>
+          <a>{props.itemInfo.price} SMH</a>
           <br />
           <a>Free delivery within Dimension C-137</a>
-          <button>Add Item To Cart</button>
+          <br />
+          <br />
+          <span>Quantity: </span>
+          <select
+            onChange={(e) => {
+              setQuantity(parseInt(e.target.value, 10));
+            }}
+          >
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+            <option value={6}>6</option>
+            <option value={7}>7</option>
+            <option value={8}>8</option>
+            <option value={9}>9</option>
+            <option value={10}>10</option>
+          </select>
+          <br />
+          <br />
+          <span>Sum: {props.itemInfo.price * quantity} SMH</span>
+          <button
+            onClick={() => {
+              props.setCart(addToCart(props.itemInfo.id, props.itemInfo));
+            }}
+          >
+            Add Item(s) To Cart
+          </button>
         </div>
-        <p>{props.shopItem.longDescription}</p>
+        <p>{props.itemInfo.longDescription}</p>
       </div>
     </Layout>
   );
 }
 
 export async function getServerSideProps(context) {
-  const { getItemInfo } = await import('../../utils/database');
+  const id = Number(context.query.shopItemId);
 
-  const id = context.query.shopItemId;
-
-  const itemInfo = getItemInfo();
-  const shopItem = itemInfo.find((si) => si.id === id);
+  const itemInfos = await getItemInfo();
+  const itemInfo = itemInfos.find((entry) => entry.id === id);
 
   return {
     props: {
-      shopItem: shopItem,
+      itemInfo: itemInfo || null,
     },
   };
 }

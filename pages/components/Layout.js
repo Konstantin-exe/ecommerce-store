@@ -23,7 +23,7 @@ export default function Layout(props) {
             <Link href="/items">
               <a>Store</a>
             </Link>
-            <Link href="/cart">
+            <Link href="/items/cart">
               <a>Cart</a>
             </Link>
           </div>

@@ -71,7 +71,7 @@ export const storeItemListCard = css`
   border-radius: 100px;
   z-index: -1;
   /* opacity: 0.9; */
-  -webkit-filter: blur(70px); */
+  /* -webkit-filter: blur(70px); */ */
 `;
 
 export const storeItemListSingle = css`
@@ -84,6 +84,7 @@ export const storeItemListSingle = css`
   border-radius: 30px;
   box-shadow: 3px 2px 10px 0 white;
   transition: 2s;
+
 
 
   img {
@@ -124,7 +125,8 @@ export const storeItemListSingle = css`
     display: flex;
     position: relative;
     margin-top: 20px;
-    color: grey;
+    color: blue;
+    font-weight: 600;
 
   }
   `;
@@ -176,6 +178,7 @@ export const singleItemPageBuyField = css`
     color: grey;
 
     :nth-child(1) {
+      font-weight: 800;
       color: #b12704;
       line-height: 24px;
       font-size: 18px;

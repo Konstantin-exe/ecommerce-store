@@ -3,30 +3,26 @@ import { css } from '@emotion/react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../components/Layout';
-import { getItemInfo } from '../../utils/database';
 import {
   storeItemList,
   storeItemListSingle,
   storeItemListCard,
   storeItemListInfo,
-  storeItemListInfoImg,
 } from '../../styles/styles';
 
-const itemInfo = getItemInfo();
-
 export default function Store(props) {
-  console.log(props);
+  console.log(props.itemInfos);
   return (
     <Layout>
       <Head>
         <title>Show me your Store</title>
       </Head>
       <h2>
-        Nobody exists on purpose, nobody belongs anywhere, everybodys gonna
+        Nobody exists on purpose, nobody belongs anywhere, everybody's gonna
         die... <br /> Go buy some stuff!
       </h2>
       <div css={storeItemList}>
-        {props.itemInfo.map((item) => (
+        {props.itemInfos.map((item) => (
           <div css={storeItemListSingle} key={item.id}>
             <Link href={`/items/${item.id}`}>
               <img src={item.imgUrl} alt={item.itemName} />
@@ -36,7 +32,6 @@ export default function Store(props) {
             <div css={storeItemListInfo}>
               <p>In Stock: {item.quantity}</p>
               <p>price: {item.price} SHM</p>
-              {/* <img src="../img/smh.png" alt="Schmekls" /> */}
             </div>
             <div css={storeItemListCard} key={Math.random()} />
           </div>
@@ -46,15 +41,13 @@ export default function Store(props) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const { getItemInfo } = await import('../../utils/database');
-
-  const itemInfo = getItemInfo();
-  console.log('i', itemInfo);
+  const itemInfos = await getItemInfo();
 
   return {
     props: {
-      itemInfo: itemInfo,
+      itemInfos: itemInfos,
     },
   };
 }
