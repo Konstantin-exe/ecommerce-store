@@ -23,8 +23,14 @@ export default function Layout(props) {
             <Link href="/items">
               <a>Store</a>
             </Link>
+            <p>0</p>
             <Link href="/items/cart">
-              <a>Cart</a>
+              <img
+                src="/img/Courier_Flap.png"
+                alt="cart"
+                width={30}
+                height={30}
+              />
             </Link>
           </div>
         </nav>

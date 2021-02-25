@@ -16,9 +16,9 @@ export default function ShopItem(props) {
   const [quantity, setQuantity] = useState(1);
   // console.log(props.cart);
 
-  //----- rendering for cookies -----//
+  //----- rendering & setting for cookies -----//
   useEffect(() => {
-    Cookies.set('cart', props.cart);
+    Cookies.set('cart', props.cart, { expires: 1 });
   }, [props.cart]);
 
   //----- Adding Items to Cart -----//
@@ -40,6 +40,7 @@ export default function ShopItem(props) {
           id: product.id,
           price: product.price,
           imgUrl: product.imgUrl,
+          sum: product.price * quantity,
         },
       ];
     }

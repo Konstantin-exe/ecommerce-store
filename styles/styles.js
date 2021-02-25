@@ -36,9 +36,16 @@ export const navBar = css`
     margin-right: 100px;
     text-decoration: none;
     padding: 15px;
-    :nth-child(2) {
-      margin-right: 20px;
-    }
+  }
+  p {
+    position: fixed;
+    right: 15px;
+    top: 15px;
+  }
+  img {
+    margin-right: 20px;
+    :hover {
+      background-color: #61ffe7;
   }
 `;
 
@@ -192,7 +199,9 @@ export const singleItemPageBuyField = css`
     color: black;
     font-size: 16px;
     border-radius: 5px;
-x;
+    :active {
+      background-color: darkgreen;
+    }
   }
 `;
 

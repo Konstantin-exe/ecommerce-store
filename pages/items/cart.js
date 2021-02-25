@@ -8,9 +8,30 @@ import { useEffect, useState } from 'react';
 import { getItemInfo } from '../../utils/database';
 
 export default function Cart(props) {
+  const [total, setTotal] = useState(0);
   console.log(props.cartCookie);
 
-  // map over cookies, every item needs to build div(see below)
+  // function totalCosts() {
+  //   props.cartCookie.map((cartItem) => {
+  //     const prevCartItem = [...cartItem];
+  //     console.log(prevCartItem);
+  //     const sumValue = prevCartItem.sum + cartItem.sum;
+  //     return sumValue;
+  //   });
+  // }
+
+  function handleTotal() {
+    let totalSum = 0;
+    for (let i = 0; i < props.cartCookie.length; i++) {
+      totalSum = props.cartCookie[i].price * props.cartCookie.quantity;
+    }
+    setTotal(totalSum);
+  }
+  console.log(handleTotal());
+  // const cartTotal = props.cartCookie.reduce(
+  //   (total, { price = 0 }, { quantity = 0 }) => total + price * quantity,
+  //   0,
+  // );
 
   return (
     <Layout>
@@ -19,16 +40,19 @@ export default function Cart(props) {
       </Head>
       <h1>Cart</h1>
       <div>
-        <div>
-          <img />
-          <p>Name: {Cookies.get(props.cart.name)}</p>
-          <p>quantity {props.cartCookie.quantity}</p>
-          <button>+</button>
-          <button>-</button>
-          <p>single item price</p>
-        </div>
-        <p>total: </p>
+        {props.cartCookie.map((cartItem) => (
+          <div key={cartItem.id}>
+            <img src={cartItem.imgUrl} alt={cartItem.name} />
+            <p>{cartItem.name}</p>
+            <p>{cartItem.quantity}</p>
+            <button>+</button>
+            <button>-</button>
+            <p>price: {cartItem.price}</p>
+            <p>sum: {cartItem.sum}</p>
+          </div>
+        ))}
       </div>
+      <div key={Math.round}>{/* <p>{handleTotal()}</p> */}</div>
     </Layout>
   );
 }
