@@ -35,12 +35,8 @@ export default function ShopItem(props) {
       return [
         ...props.cart,
         {
-          name: product.itemName,
           quantity: quantity,
           id: product.id,
-          price: product.price,
-          imgUrl: product.imgUrl,
-          sum: product.price * quantity,
         },
       ];
     }

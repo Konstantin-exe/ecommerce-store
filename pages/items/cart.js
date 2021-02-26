@@ -4,34 +4,36 @@ import Head from 'next/head';
 import Layout from '../components/Layout';
 import Cookies from 'js-cookie';
 import styles, { backToStoreButton, singleItemPage } from '../../styles/styles';
-import { useEffect, useState } from 'react';
-import { getItemInfo } from '../../utils/database';
+import { useEffect, useState, useReducer } from 'react';
 
 export default function Cart(props) {
-  const [total, setTotal] = useState(0);
-  console.log(props.cartCookie);
-
-  // function totalCosts() {
-  //   props.cartCookie.map((cartItem) => {
-  //     const prevCartItem = [...cartItem];
-  //     console.log(prevCartItem);
-  //     const sumValue = prevCartItem.sum + cartItem.sum;
-  //     return sumValue;
-  //   });
-  // }
+  const [itemInfo, setItemInfo] = useState(props.productsInfo);
+  const [amount, setAmount] = useState(props.productsInfo.amount);
+  // console.log(props.cartCookie);
 
   function handleTotal() {
     let totalSum = 0;
-    for (let i = 0; i < props.cartCookie.length; i++) {
-      totalSum = props.cartCookie[i].price * props.cartCookie.quantity;
+    for (let i = 0; i < props.productsInfo.length; i++) {
+      totalSum += props.productsInfo[i].price * props.productsInfo[i].amount;
     }
-    setTotal(totalSum);
+    return totalSum;
   }
-  console.log(handleTotal());
-  // const cartTotal = props.cartCookie.reduce(
-  //   (total, { price = 0 }, { quantity = 0 }) => total + price * quantity,
-  //   0,
-  // );
+
+  // const initialState =
+
+  // const reducer = (state, action) => {
+  //   switch (action) {
+  //     case 'INCREMENT':
+  //       return state + 1;
+  //     case 'DECREMENT':
+  //       return state - 1;
+  //     default:
+  //       throw new Error();
+  //   }
+  // };
+
+  // const Counter = () => {
+  //   const [state, dispatch] = useReducer(reducer, initalState);
 
   return (
     <Layout>
@@ -40,36 +42,59 @@ export default function Cart(props) {
       </Head>
       <h1>Cart</h1>
       <div>
-        {props.cartCookie.map((cartItem) => (
+        {itemInfo.map((cartItem) => (
           <div key={cartItem.id}>
             <img src={cartItem.imgUrl} alt={cartItem.name} />
-            <p>{cartItem.name}</p>
-            <p>{cartItem.quantity}</p>
-            <button>+</button>
+            <p>{cartItem.itemName}</p>
+            <p>{cartItem.amount}</p>
+            <button
+              onClick={() => {
+                increaseAmount();
+              }}
+            >
+              +
+            </button>
             <button>-</button>
             <p>price: {cartItem.price}</p>
-            <p>sum: {cartItem.sum}</p>
+            <p>sum: {cartItem.amount * cartItem.price}</p>
+            <button>DELETE</button>
+            <br />
           </div>
         ))}
       </div>
-      <div key={Math.round}>{/* <p>{handleTotal()}</p> */}</div>
+      <div key={Math.round}>
+        <p>Total: {handleTotal()}</p>
+      </div>
     </Layout>
   );
 }
 
 export async function getServerSideProps(context) {
+  const { getItemInfo } = await import('../../utils/database');
+  const { getItemById } = await import('../../utils/database');
   const id = Number(context.query.shopItemId);
 
   const itemInfos = await getItemInfo();
   const itemInfo = itemInfos.find((entry) => entry.id === id);
 
-  const cart = context.req.cookies.cart;
-  const cartCookie = cart ? JSON.parse(cart) : 0;
+  const cookiesFromRequest = context.req.cookies.cart;
+  const cookiesParsed = cookiesFromRequest
+    ? JSON.parse(cookiesFromRequest)
+    : [];
+
+  const productsInfo = cookiesParsed.map((cookieItem) => {
+    const itemFromDatabase = itemInfos.find(
+      (product) => product.id === cookieItem.id,
+    );
+    itemFromDatabase.amount = cookieItem.quantity;
+    return itemFromDatabase;
+  });
+  // console.log(productsInfo);
 
   return {
     props: {
       itemInfo: itemInfo || null,
-      cartCookie: cartCookie,
+      productsInfo: productsInfo,
     },
   };
 }

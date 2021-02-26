@@ -3,6 +3,7 @@ import { css, Global } from '@emotion/react';
 import Image from 'next/image';
 import Cookies from 'js-cookie';
 import { useState, useEffect } from 'react';
+import Layout from './components/Layout';
 
 export const globalStyles = (
   <Global
@@ -101,6 +102,7 @@ function MyApp({ Component, pageProps }) {
     <>
       {globalStyles}
       <Component {...pageProps} cart={cart} setCart={setCart} />{' '}
+      {/* <Layout {...pageProps} cart={cart} /> */}
     </>
   );
 }

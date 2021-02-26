@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
+import Cookies from 'js-cookie';
 import { navBar, navLinks } from '../../styles/styles';
 
 export default function Layout(props) {
