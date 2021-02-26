@@ -5,11 +5,11 @@ import Layout from '../components/Layout';
 import Cookies from 'js-cookie';
 import styles, { backToStoreButton, singleItemPage } from '../../styles/styles';
 import { useEffect, useState, useReducer } from 'react';
+import { networkInterfaces } from 'os';
 
 export default function Cart(props) {
   const [itemInfo, setItemInfo] = useState(props.productsInfo);
-  const [amount, setAmount] = useState(props.productsInfo.amount);
-  // console.log(props.cartCookie);
+  const [stock, setStock] = useState(props.productsInfo);
 
   function handleTotal() {
     let totalSum = 0;
@@ -19,21 +19,25 @@ export default function Cart(props) {
     return totalSum;
   }
 
-  // const initialState =
+  const increaseQuantity = (index) => {
+    const currentItems = [...stock];
+    currentItems[index].amount += 1;
+    setStock(currentItems);
+  };
 
-  // const reducer = (state, action) => {
-  //   switch (action) {
-  //     case 'INCREMENT':
-  //       return state + 1;
-  //     case 'DECREMENT':
-  //       return state - 1;
-  //     default:
-  //       throw new Error();
-  //   }
-  // };
+  const decreaseQuantity = (index) => {
+    const currentItems = [...stock];
 
-  // const Counter = () => {
-  //   const [state, dispatch] = useReducer(reducer, initalState);
+    if (currentItems[index].amount > 1) {
+      currentItems[index].amount -= 1;
+      setStock(currentItems);
+    }
+  };
+
+  const deleteItem = (index) => {
+    const currentItems = [...stock];
+    Cookies.remove(currentItems[index]);
+  };
 
   return (
     <Layout>
@@ -42,22 +46,34 @@ export default function Cart(props) {
       </Head>
       <h1>Cart</h1>
       <div>
-        {itemInfo.map((cartItem) => (
+        {itemInfo.map((cartItem, i) => (
           <div key={cartItem.id}>
             <img src={cartItem.imgUrl} alt={cartItem.name} />
             <p>{cartItem.itemName}</p>
             <p>{cartItem.amount}</p>
             <button
               onClick={() => {
-                increaseAmount();
+                increaseQuantity(i);
               }}
             >
               +
             </button>
-            <button>-</button>
+            <button
+              onClick={() => {
+                decreaseQuantity(i);
+              }}
+            >
+              -
+            </button>
             <p>price: {cartItem.price}</p>
             <p>sum: {cartItem.amount * cartItem.price}</p>
-            <button>DELETE</button>
+            <button
+              onClick={() => {
+                deleteItem(i);
+              }}
+            >
+              DELETE
+            </button>
             <br />
           </div>
         ))}
