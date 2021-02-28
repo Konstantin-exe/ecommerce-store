@@ -3,7 +3,12 @@ import Link from 'next/link';
 import Head from 'next/head';
 import Layout from '../components/Layout';
 import Cookies from 'js-cookie';
-import styles, { backToStoreButton, singleItemPage } from '../../styles/styles';
+import styles, {
+  backToStoreButton,
+  cartItemLayout,
+  cartItemLayoutSingle,
+  singleItemPage,
+} from '../../styles/styles';
 import { useEffect, useState, useReducer } from 'react';
 import { networkInterfaces } from 'os';
 
@@ -36,8 +41,20 @@ export default function Cart(props) {
 
   const deleteItem = (index) => {
     const currentItems = [...stock];
-    Cookies.remove(currentItems[index]);
+
+    if (currentItems[index] === index) {
+      props.setCart(Cookies.remove('cart', props.cart[index]));
+    }
   };
+  useEffect(() => {}, [props.cart]);
+
+  // function deleteItem(id) {
+  //   for (let i = 0; i < props.productsInfo.length; i++) {
+  //     if (props.productsInfo[i].id === id) {
+  //       Cookies.remove('cart');
+  //     }
+  //   }
+  // }
 
   return (
     <Layout>
@@ -46,38 +63,41 @@ export default function Cart(props) {
       </Head>
       <h1>Cart</h1>
       <div>
-        {itemInfo.map((cartItem, i) => (
-          <div key={cartItem.id}>
-            <img src={cartItem.imgUrl} alt={cartItem.name} />
-            <p>{cartItem.itemName}</p>
-            <p>{cartItem.amount}</p>
-            <button
-              onClick={() => {
-                increaseQuantity(i);
-              }}
-            >
-              +
-            </button>
-            <button
-              onClick={() => {
-                decreaseQuantity(i);
-              }}
-            >
-              -
-            </button>
-            <p>price: {cartItem.price}</p>
-            <p>sum: {cartItem.amount * cartItem.price}</p>
-            <button
-              onClick={() => {
-                deleteItem(i);
-              }}
-            >
-              DELETE
-            </button>
-            <br />
-          </div>
-        ))}
+        <div css={cartItemLayout}>
+          {itemInfo.map((cartItem, i) => (
+            <div css={cartItemLayoutSingle} key={cartItem.id}>
+              <img src={cartItem.imgUrl} alt={cartItem.name} />
+              <p>{cartItem.itemName}</p>
+              <p>Quantity: {cartItem.amount}</p>
+              <button
+                onClick={() => {
+                  increaseQuantity(i);
+                }}
+              >
+                +
+              </button>
+              <button
+                onClick={() => {
+                  decreaseQuantity(i);
+                }}
+              >
+                -
+              </button>
+              <p>price: {cartItem.price}SMH</p>
+              <p>sum: {cartItem.amount * cartItem.price}</p>
+              <button
+                onClick={() => {
+                  deleteItem();
+                }}
+              >
+                Delete Item
+              </button>
+              <br />
+            </div>
+          ))}
+        </div>
       </div>
+
       <div key={Math.round}>
         <p>Total: {handleTotal()}</p>
       </div>

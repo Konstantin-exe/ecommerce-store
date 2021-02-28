@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import Cookies from 'js-cookie';
-import { navBar, navLinks } from '../../styles/styles';
+import { navBar, navLinks, cartImg } from '../../styles/styles';
 
 export default function Layout(props) {
   return (
@@ -24,13 +24,14 @@ export default function Layout(props) {
             <Link href="/items">
               <a>Store</a>
             </Link>
-            <p>0</p>
+            <p>{Cookies.length}</p>
             <Link href="/items/cart">
               <img
                 src="/img/Courier_Flap.png"
                 alt="cart"
                 width={30}
                 height={30}
+                css={cartImg}
               />
             </Link>
           </div>

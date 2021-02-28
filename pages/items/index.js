@@ -7,7 +7,6 @@ import Layout from '../components/Layout';
 import {
   storeItemList,
   storeItemListSingle,
-  storeItemListCard,
   storeItemListInfo,
 } from '../../styles/styles';
 
@@ -34,7 +33,7 @@ export default function Store(props) {
               <p>In Stock: {item.quantity}</p>
               <p>price: {item.price} SHM</p>
             </div>
-            <div css={storeItemListCard} key={Math.random()} />
+            <div key={Math.random()} />
           </div>
         ))}
       </div>
