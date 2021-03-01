@@ -36,18 +36,33 @@ export const navBar = css`
     margin-right: 100px;
     text-decoration: none;
     padding: 15px;
-    :nth-child(2) {
-      margin-right: 20px;
-    }
+
+  }
+  p {
+    position: fixed;
+    right: 15px;
+    top: 15px;
+  }
+  img {
+    margin-right: 20px;
+    :hover {
+      background-color: #61ffe7;
   }
 `;
 
 export const navLinks = css`
+  padding-bottom: 10px;
   a {
     :hover {
       background-color: #61ffe7;
     }
   }
+`;
+
+export const cartImg = css`
+  padding-bottom: none;
+  position: relative;
+  top: 5px;
 `;
 
 export const storeItemList = css`
@@ -57,21 +72,6 @@ export const storeItemList = css`
   width: 80%;
   margin: auto;
   justify-content: space-between;
-`;
-export const storeItemListCard = css`
-  /* position: relative;
-  top: -350px;
-  right: 20px;
-  background-color: yellow;
-  max-width: 480px;
-  min-width: 480px;
-  max-height: 3800px;
-  min-height: 380px;
-  margin: 20px;
-  border-radius: 100px;
-  z-index: -1;
-  /* opacity: 0.9; */
-  /* -webkit-filter: blur(70px); */ */
 `;
 
 export const storeItemListSingle = css`
@@ -192,7 +192,9 @@ export const singleItemPageBuyField = css`
     color: black;
     font-size: 16px;
     border-radius: 5px;
-x;
+    :active {
+      background-color: darkgreen;
+    }
   }
 `;
 
@@ -205,4 +207,47 @@ export const backToStoreButton = css`
   border: 2px;
   left: 30px;
   top: 100px;
+`;
+
+// Cart Page
+
+export const cartItemLayout = css`
+  width: 80%;
+  min-width: 480px;
+  margin: auto;
+`;
+
+export const cartItemLayoutSingle = css`
+  background-color: yellow;
+  border-radius: 15px;
+  display: flex;
+
+  min-width: 480px;
+  max-height: 200px;
+  min-height: 200px;
+  margin-bottom: 40px;
+  align-items: center;
+  font-size: 18px;
+  padding: 30px;
+
+  img {
+    max-height: 150px;
+    margin: 30px;
+  }
+  p {
+    display: flex;
+    margin: auto;
+    padding: 20px;
+  }
+  button {
+    padding: 5px;
+    background-color: yellowgreen;
+    color: black;
+    font-size: 16px;
+    border-radius: 5px;
+
+    :active {
+      background-color: darkgreen;
+    }
+  }
 `;

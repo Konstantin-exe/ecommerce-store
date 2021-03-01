@@ -3,18 +3,24 @@ import { css } from '@emotion/react';
 import Link from 'next/link';
 import Head from 'next/head';
 import Layout from '../components/Layout';
+import Cookies from 'js-cookie';
 import styles, {
   backToStoreButton,
   singleItemPage,
   singleItemPageBuyField,
 } from '../../styles/styles';
 import { getItemInfo } from '../../utils/database';
-import { useState } from 'react';
-import Cart from './cart';
+import { useEffect, useState } from 'react';
 
 export default function ShopItem(props) {
   const [quantity, setQuantity] = useState(1);
-  console.log(props.cart);
+
+  //----- rendering & setting for cookies -----//
+  useEffect(() => {
+    Cookies.set('cart', props.cart, { expires: 1 });
+  }, [props.cart]);
+
+  //----- Adding Items to Cart -----//
 
   function addToCart(id, product) {
     const productAlreadyInCart = props.cart.find((cartItem) => {
@@ -28,15 +34,13 @@ export default function ShopItem(props) {
       return [
         ...props.cart,
         {
-          name: product.itemName,
           quantity: quantity,
           id: product.id,
-          price: product.price,
         },
       ];
     }
-    let newCart = [...props.cart];
-    let productIndex = newCart.findIndex((cartItem) => {
+    const newCart = [...props.cart];
+    const productIndex = newCart.findIndex((cartItem) => {
       return cartItem.id === productAlreadyInCart.id;
     });
     newCart[productIndex].quantity += quantity;
@@ -44,7 +48,7 @@ export default function ShopItem(props) {
   }
 
   return (
-    <Layout>
+    <Layout setCart={props.setCart} cart={props.cart}>
       <Head>
         <title>{props.itemInfo.itemName}</title>
       </Head>
@@ -102,9 +106,13 @@ export async function getServerSideProps(context) {
   const itemInfos = await getItemInfo();
   const itemInfo = itemInfos.find((entry) => entry.id === id);
 
+  const cart = context.req.cookies.cart;
+  const cartCookie = cart ? JSON.parse(cart) : 0;
+
   return {
     props: {
       itemInfo: itemInfo || null,
+      cartCookie: cartCookie,
     },
   };
 }

@@ -3,17 +3,17 @@ import { css } from '@emotion/react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../components/Layout';
+
 import {
   storeItemList,
   storeItemListSingle,
-  storeItemListCard,
   storeItemListInfo,
 } from '../../styles/styles';
 
 export default function Store(props) {
   console.log(props.itemInfos);
   return (
-    <Layout>
+    <Layout setCart={props.setCart} cart={props.cart}>
       <Head>
         <title>Show me your Store</title>
       </Head>
@@ -33,7 +33,7 @@ export default function Store(props) {
               <p>In Stock: {item.quantity}</p>
               <p>price: {item.price} SHM</p>
             </div>
-            <div css={storeItemListCard} key={Math.random()} />
+            <div key={Math.random()} />
           </div>
         ))}
       </div>

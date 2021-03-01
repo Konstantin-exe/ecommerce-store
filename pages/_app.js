@@ -1,7 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css, Global } from '@emotion/react';
 import Image from 'next/image';
-import { useState } from 'react';
+import Cookies from 'js-cookie';
+import { useState, useEffect } from 'react';
+import Layout from './components/Layout';
 
 export const globalStyles = (
   <Global
@@ -95,10 +97,12 @@ export const globalStyles = (
 
 function MyApp({ Component, pageProps }) {
   const [cart, setCart] = useState([]);
+
   return (
     <>
       {globalStyles}
       <Component {...pageProps} cart={cart} setCart={setCart} />{' '}
+      {/* <Layout {...pageProps} cart={cart} setCart={setCart} /> */}
     </>
   );
 }
