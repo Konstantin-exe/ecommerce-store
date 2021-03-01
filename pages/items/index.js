@@ -13,7 +13,7 @@ import {
 export default function Store(props) {
   console.log(props.itemInfos);
   return (
-    <Layout>
+    <Layout setCart={props.setCart} cart={props.cart}>
       <Head>
         <title>Show me your Store</title>
       </Head>

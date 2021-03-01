@@ -3,8 +3,15 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Cookies from 'js-cookie';
 import { navBar, navLinks, cartImg } from '../../styles/styles';
+import { useEffect } from 'react';
 
 export default function Layout(props) {
+  const showCookieLength = Cookies.get('cart')
+    ? JSON.parse(Cookies.get('cart')).length
+    : 0;
+
+  useEffect(() => {}, [props.cart]);
+
   return (
     <>
       <Head>
@@ -24,7 +31,8 @@ export default function Layout(props) {
             <Link href="/items">
               <a>Store</a>
             </Link>
-            <p>{Cookies.length}</p>
+            <p> {showCookieLength} </p>
+
             <Link href="/items/cart">
               <img
                 src="/img/Courier_Flap.png"
@@ -37,20 +45,6 @@ export default function Layout(props) {
           </div>
         </nav>
       </header>
-      {/* <a>
-        <img
-          src="/img/page-background.png"
-          alt=""
-          height={1000}
-          width={1000}
-          style={{
-            position: 'fixed',
-            zIndex: -2,
-            backgroundPosition: 'center',
-            backgroundSize: 'center',
-          }}
-        />
-      </a> */}
       {props.children}
       <footer>footer</footer>
     </>

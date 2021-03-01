@@ -13,7 +13,7 @@ import { useEffect, useState, useReducer } from 'react';
 import { networkInterfaces } from 'os';
 
 export default function Cart(props) {
-  const [itemInfo, setItemInfo] = useState(props.productsInfo);
+  // const [itemInfo, setItemInfo] = useState(props.productsInfo);
   const [stock, setStock] = useState(props.productsInfo);
 
   function handleTotal() {
@@ -39,32 +39,30 @@ export default function Cart(props) {
     }
   };
 
-  const deleteItem = (index) => {
+  const deleteItem = (arr, index) => {
     const currentItems = [...stock];
 
-    if (currentItems[index] === index) {
-      props.setCart(Cookies.remove('cart', props.cart[index]));
-    }
+    const currentItemFiltered = currentItems.filter(function (
+      cartItemIndex,
+      currentItemIndex,
+    ) {
+      const newCart = currentItemIndex !== index;
+      return newCart;
+    });
+    setStock(currentItemFiltered);
+    Cookies.set('cart', currentItemFiltered);
   };
-  useEffect(() => {}, [props.cart]);
-
-  // function deleteItem(id) {
-  //   for (let i = 0; i < props.productsInfo.length; i++) {
-  //     if (props.productsInfo[i].id === id) {
-  //       Cookies.remove('cart');
-  //     }
-  //   }
-  // }
+  useEffect(() => {}, [stock]);
 
   return (
-    <Layout>
+    <Layout setCart={props.setCart} cart={props.cart}>
       <Head>
         <title>Show me your Cart</title>
       </Head>
       <h1>Cart</h1>
       <div>
         <div css={cartItemLayout}>
-          {itemInfo.map((cartItem, i) => (
+          {stock.map((cartItem, i) => (
             <div css={cartItemLayoutSingle} key={cartItem.id}>
               <img src={cartItem.imgUrl} alt={cartItem.name} />
               <p>{cartItem.itemName}</p>
@@ -87,7 +85,7 @@ export default function Cart(props) {
               <p>sum: {cartItem.amount * cartItem.price}</p>
               <button
                 onClick={() => {
-                  deleteItem();
+                  deleteItem(stock, i);
                 }}
               >
                 Delete Item

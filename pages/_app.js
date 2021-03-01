@@ -102,7 +102,7 @@ function MyApp({ Component, pageProps }) {
     <>
       {globalStyles}
       <Component {...pageProps} cart={cart} setCart={setCart} />{' '}
-      {/* <Layout {...pageProps} cart={cart} /> */}
+      {/* <Layout {...pageProps} cart={cart} setCart={setCart} /> */}
     </>
   );
 }
