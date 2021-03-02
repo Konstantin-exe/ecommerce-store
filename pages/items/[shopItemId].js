@@ -15,7 +15,7 @@ import { useEffect, useState } from 'react';
 export default function ShopItem(props) {
   const [quantity, setQuantity] = useState(1);
 
-  //----- rendering & setting for cookies -----//
+  //----- rendering & setting cookies -----//
   useEffect(() => {
     Cookies.set('cart', props.cart, { expires: 1 });
   }, [props.cart]);
