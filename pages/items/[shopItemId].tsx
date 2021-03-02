@@ -37,7 +37,7 @@ type Props = {
 export default function ShopItem(props: Props) {
   const [quantity, setQuantity] = useState(1);
 
-  //----- rendering & setting for cookies -----//
+  //----- rendering & setting cookies -----//
   useEffect(() => {
     Cookies.set('cart', props.cart, { expires: 1 });
   }, [props.cart]);
