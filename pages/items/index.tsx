@@ -2,18 +2,29 @@
 import { css } from '@emotion/react';
 import Head from 'next/head';
 import Link from 'next/link';
-import Layout from '../components/Layout';
-
+import Layout from '../../components/Layout';
 import {
   storeItemList,
   storeItemListSingle,
   storeItemListInfo,
 } from '../../styles/styles';
 
-export default function Store(props) {
+type allProductsFromServer = {
+  id: number;
+  itemName: string;
+  price: number;
+  quantity: number;
+  imgUrl: string;
+  shortDescription: string;
+  longDescription: string;
+};
+
+type Props = { itemInfos: allProductsFromServer[] };
+
+export default function Store(props: Props) {
   console.log(props.itemInfos);
   return (
-    <Layout setCart={props.setCart} cart={props.cart}>
+    <Layout>
       <Head>
         <title>Show me your Store</title>
       </Head>
@@ -43,7 +54,8 @@ export default function Store(props) {
 
 export async function getStaticProps() {
   const { getItemInfo } = await import('../../utils/database');
-  const itemInfos = await getItemInfo();
+  const itemsFromServer = await getItemInfo();
+  const itemInfos = itemsFromServer.slice(0, 9);
 
   return {
     props: {

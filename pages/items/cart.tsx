@@ -1,7 +1,8 @@
+/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import Link from 'next/link';
 import Head from 'next/head';
-import Layout from '../components/Layout';
+import Layout from '../../components/Layout';
 import Cookies from 'js-cookie';
 import styles, {
   backToStoreButton,
@@ -11,8 +12,29 @@ import styles, {
 } from '../../styles/styles';
 import { useEffect, useState, useReducer } from 'react';
 import { networkInterfaces } from 'os';
+import { GetServerSidePropsContext } from 'next';
 
-export default function Cart(props) {
+type AllProductsFromServer = {
+  id: number;
+  itemName: string;
+  price: number;
+  amount: number;
+  quantity: number;
+  imgUrl: string;
+  shortDescription: string;
+  longDescription: string;
+};
+
+export type AllProductsFromCart = {
+  id: number;
+  amount: number;
+};
+
+type Props = {
+  productsInfo: AllProductsFromServer[];
+};
+
+export default function Cart(props: Props) {
   // const [itemInfo, setItemInfo] = useState(props.productsInfo);
   const [stock, setStock] = useState(props.productsInfo);
 
@@ -24,13 +46,13 @@ export default function Cart(props) {
     return totalSum;
   }
 
-  const increaseQuantity = (index) => {
+  const increaseQuantity = (index: number) => {
     const currentItems = [...stock];
     currentItems[index].amount += 1;
     setStock(currentItems);
   };
 
-  const decreaseQuantity = (index) => {
+  const decreaseQuantity = (index: number) => {
     const currentItems = [...stock];
 
     if (currentItems[index].amount > 1) {
@@ -39,7 +61,7 @@ export default function Cart(props) {
     }
   };
 
-  const deleteItem = (arr, index) => {
+  const deleteItem = (arr: AllProductsFromServer[], index: number) => {
     const currentItems = [...stock];
 
     const currentItemFiltered = currentItems.filter(function (
@@ -55,7 +77,7 @@ export default function Cart(props) {
   useEffect(() => {}, [stock]);
 
   return (
-    <Layout setCart={props.setCart} cart={props.cart}>
+    <Layout>
       <Head>
         <title>Show me your Cart</title>
       </Head>
@@ -64,7 +86,7 @@ export default function Cart(props) {
         <div css={cartItemLayout}>
           {stock.map((cartItem, i) => (
             <div css={cartItemLayoutSingle} key={cartItem.id}>
-              <img src={cartItem.imgUrl} alt={cartItem.name} />
+              <img src={cartItem.imgUrl} alt={cartItem.itemName} />
               <p>{cartItem.itemName}</p>
               <p>Quantity: {cartItem.amount}</p>
               <button
@@ -96,34 +118,38 @@ export default function Cart(props) {
         </div>
       </div>
 
-      <div key={Math.round}>
+      <div key={Math.random()}>
         <p>Total: {handleTotal()}</p>
       </div>
     </Layout>
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  console.log('context', context);
   const { getItemInfo } = await import('../../utils/database');
-  const { getItemById } = await import('../../utils/database');
+
   const id = Number(context.query.shopItemId);
 
   const itemInfos = await getItemInfo();
-  const itemInfo = itemInfos.find((entry) => entry.id === id);
+  const itemInfo = itemInfos.find(
+    (entry: AllProductsFromServer) => entry.id === id,
+  );
 
   const cookiesFromRequest = context.req.cookies.cart;
   const cookiesParsed = cookiesFromRequest
     ? JSON.parse(cookiesFromRequest)
     : [];
 
-  const productsInfo = cookiesParsed.map((cookieItem) => {
-    const itemFromDatabase = itemInfos.find(
-      (product) => product.id === cookieItem.id,
-    );
-    itemFromDatabase.amount = cookieItem.quantity;
-    return itemFromDatabase;
-  });
-  // console.log(productsInfo);
+  const productsInfo = cookiesParsed.map(
+    (cookieItem: AllProductsFromServer) => {
+      const itemFromDatabase = itemInfos.find(
+        (product: AllProductsFromServer) => product.id === cookieItem.id,
+      );
+      itemFromDatabase.amount = cookieItem.quantity;
+      return itemFromDatabase;
+    },
+  );
 
   return {
     props: {

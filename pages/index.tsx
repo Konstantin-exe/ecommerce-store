@@ -1,8 +1,9 @@
+/** @jsxImportSource @emotion/react */
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import { homeHead, homeHeading } from '../styles/styles';
-import Layout from './components/Layout';
+import Layout from '../components/Layout';
 
 export default function Home() {
   return (
