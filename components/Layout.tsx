@@ -1,16 +1,21 @@
+/** @jsxImportSource @emotion/react */
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import Cookies from 'js-cookie';
-import { navBar, navLinks, cartImg } from '../../styles/styles';
+import { navBar, navLinks, cartImg } from '../styles/styles';
 import { useEffect } from 'react';
 
-export default function Layout(props) {
+type Props = {
+  children: React.ReactNode;
+};
+
+export default function Layout(props: Props) {
   const showCookieLength = Cookies.get('cart')
     ? JSON.parse(Cookies.get('cart')).length
     : 0;
 
-  useEffect(() => {}, [props.cart]);
+  // useEffect(() => {}, [props.cart]);
 
   return (
     <>

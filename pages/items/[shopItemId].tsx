@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import Link from 'next/link';
 import Head from 'next/head';
-import Layout from '../components/Layout';
+import Layout from '../../components/Layout';
 import Cookies from 'js-cookie';
 import styles, {
   backToStoreButton,
@@ -10,9 +10,31 @@ import styles, {
   singleItemPageBuyField,
 } from '../../styles/styles';
 import { getItemInfo } from '../../utils/database';
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { GetServerSidePropsContext } from 'next';
 
-export default function ShopItem(props) {
+type AllProductsFromServer = {
+  id: number;
+  itemName: string;
+  price: number;
+  quantity: number;
+  imgUrl: string;
+  shortDescription: string;
+  longDescription: string;
+};
+
+export type AllProductsFromCart = {
+  id: number;
+  quantity: number;
+};
+
+type Props = {
+  cart: AllProductsFromCart[];
+  itemInfo: AllProductsFromServer;
+  setCart: Dispatch<SetStateAction<AllProductsFromCart[]>>;
+};
+
+export default function ShopItem(props: Props) {
   const [quantity, setQuantity] = useState(1);
 
   //----- rendering & setting cookies -----//
@@ -22,7 +44,7 @@ export default function ShopItem(props) {
 
   //----- Adding Items to Cart -----//
 
-  function addToCart(id, product) {
+  function addToCart(id: number, product: AllProductsFromCart) {
     const productAlreadyInCart = props.cart.find((cartItem) => {
       if (cartItem.id === id) {
         return true;
@@ -48,15 +70,13 @@ export default function ShopItem(props) {
   }
 
   return (
-    <Layout setCart={props.setCart} cart={props.cart}>
+    <Layout>
       <Head>
         <title>{props.itemInfo.itemName}</title>
       </Head>
       <h1>{props.itemInfo.itemName}</h1>
-      <Link href={`/items`}>
-        <button css={backToStoreButton} href={`/items`}>
-          Back to store
-        </button>
+      <Link href="/items">
+        <button css={backToStoreButton}>Back to store</button>
       </Link>
       <div css={singleItemPage}>
         <img src={props.itemInfo.imgUrl} alt={props.itemInfo.itemName} />
@@ -100,11 +120,13 @@ export default function ShopItem(props) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   const id = Number(context.query.shopItemId);
 
   const itemInfos = await getItemInfo();
-  const itemInfo = itemInfos.find((entry) => entry.id === id);
+  const itemInfo = itemInfos.find(
+    (entry: AllProductsFromServer) => entry.id === id,
+  );
 
   const cart = context.req.cookies.cart;
   const cartCookie = cart ? JSON.parse(cart) : 0;
