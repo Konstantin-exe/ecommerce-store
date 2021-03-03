@@ -107,6 +107,7 @@ export default function ShopItem(props: Props) {
           <br />
           <span>Sum: {props.itemInfo.price * quantity} SMH</span>
           <button
+            data-cy="addToCart"
             onClick={() => {
               props.setCart(addToCart(props.itemInfo.id, props.itemInfo));
             }}

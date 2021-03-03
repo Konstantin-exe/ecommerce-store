@@ -40,6 +40,7 @@ export default function Layout(props: Props) {
 
             <Link href="/items/cart">
               <img
+                data-cy="cartIcon"
                 src="/img/Courier_Flap.png"
                 alt="cart"
                 width={30}

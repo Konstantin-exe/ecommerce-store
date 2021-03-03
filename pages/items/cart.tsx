@@ -90,6 +90,7 @@ export default function Cart(props: Props) {
               <p>{cartItem.itemName}</p>
               <p>Quantity: {cartItem.amount}</p>
               <button
+                data-cy="increaseQuantity"
                 onClick={() => {
                   increaseQuantity(i);
                 }}
@@ -97,6 +98,7 @@ export default function Cart(props: Props) {
                 +
               </button>
               <button
+                data-cy="decreaseQuantity"
                 onClick={() => {
                   decreaseQuantity(i);
                 }}
@@ -106,6 +108,7 @@ export default function Cart(props: Props) {
               <p>price: {cartItem.price}SMH</p>
               <p>sum: {cartItem.amount * cartItem.price}</p>
               <button
+                data-cy="deleteItem"
                 onClick={() => {
                   deleteItem(stock, i);
                 }}
