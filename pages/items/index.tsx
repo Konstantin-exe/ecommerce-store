@@ -36,7 +36,7 @@ export default function Store(props: Props) {
         {props.itemInfos.map((item) => (
           <div css={storeItemListSingle} key={item.id}>
             <Link href={`/items/${item.id}`}>
-              <img src={item.imgUrl} alt={item.itemName} />
+              <img src={item.imgUrl} alt={item.itemName} data-cy="shopItem" />
             </Link>
             <h4>{item.itemName} </h4>
             <p>{item.shortDescription}</p>

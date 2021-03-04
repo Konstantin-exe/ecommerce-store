@@ -1,17 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
-import Link from 'next/link';
 import Head from 'next/head';
 import Layout from '../../components/Layout';
 import Cookies from 'js-cookie';
-import styles, {
-  backToStoreButton,
-  cartItemLayout,
-  cartItemLayoutSingle,
-  singleItemPage,
-} from '../../styles/styles';
-import { useEffect, useState, useReducer } from 'react';
-import { networkInterfaces } from 'os';
+import { cartItemLayout, cartItemLayoutSingle } from '../../styles/styles';
+import { useEffect, useState } from 'react';
 import { GetServerSidePropsContext } from 'next';
 
 type AllProductsFromServer = {
@@ -90,6 +82,7 @@ export default function Cart(props: Props) {
               <p>{cartItem.itemName}</p>
               <p>Quantity: {cartItem.amount}</p>
               <button
+                data-cy="increaseQuantity"
                 onClick={() => {
                   increaseQuantity(i);
                 }}
@@ -97,6 +90,7 @@ export default function Cart(props: Props) {
                 +
               </button>
               <button
+                data-cy="decreaseQuantity"
                 onClick={() => {
                   decreaseQuantity(i);
                 }}
@@ -106,6 +100,7 @@ export default function Cart(props: Props) {
               <p>price: {cartItem.price}SMH</p>
               <p>sum: {cartItem.amount * cartItem.price}</p>
               <button
+                data-cy="deleteItem"
                 onClick={() => {
                   deleteItem(stock, i);
                 }}

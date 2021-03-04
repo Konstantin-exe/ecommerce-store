@@ -13,7 +13,7 @@ export default function Home() {
       </Head>
       <h1 css={homeHeading}>SHOW ME WHAT YOU GOT</h1>
       <Link href={`/items`}>
-        <img css={homeHead} src="/favicon.ico" alt="head" />
+        <img css={homeHead} src="/favicon.ico" alt="head" data-cy="homeHead" />
       </Link>
     </Layout>
   );
