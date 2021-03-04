@@ -2,9 +2,14 @@
 import Head from 'next/head';
 import Layout from '../../components/Layout';
 import Cookies from 'js-cookie';
-import { cartItemLayout, cartItemLayoutSingle } from '../../styles/styles';
+import {
+  cartSum,
+  cartItemLayout,
+  cartItemLayoutSingle,
+} from '../../styles/styles';
 import { useEffect, useState } from 'react';
 import { GetServerSidePropsContext } from 'next';
+import CheckoutForm from '../../components/CheckoutForm';
 
 type AllProductsFromServer = {
   id: number;
@@ -110,11 +115,12 @@ export default function Cart(props: Props) {
               <br />
             </div>
           ))}
+          <div css={cartSum} key={Math.random()}>
+            <h2>Total: {handleTotal()}</h2>
+          </div>
+          <CheckoutForm />
+          <br />
         </div>
-      </div>
-
-      <div key={Math.random()}>
-        <p>Total: {handleTotal()}</p>
       </div>
     </Layout>
   );

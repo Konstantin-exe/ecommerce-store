@@ -1,10 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import Head from 'next/head';
 import Link from 'next/link';
-import Image from 'next/image';
 import Cookies from 'js-cookie';
-import { navBar, navLinks, cartImg } from '../styles/styles';
-import { useEffect } from 'react';
+import { navBar, navLinks, cartImg, footer, push } from '../styles/styles';
 
 type Props = {
   children: React.ReactNode;
@@ -52,7 +50,20 @@ export default function Layout(props: Props) {
         </nav>
       </header>
       {props.children}
-      <footer>footer</footer>
+      <div css={push}></div>
+      <footer css={footer}>
+        <p>
+          Though predated by another group in leadership in the Citadel, the
+          Council consisted of six Ricks who stood out from the rest. The
+          spokesman for the Council was Riq IV. The other Council members were
+          Rick Prime, Quantum Rick, Maximums Rickimus, Zeta Alpha Rick, and
+          Ricktiminus Sancheziminius.{' '}
+        </p>
+        <img src="/img/Council_of_Ricks.png" alt="council" width={250} />
+        <Link href="https://www.youtube.com/watch?v=RiL4kGE2-oQ">
+          <p>© 1998-2666, Council of Rick Inc.</p>
+        </Link>
+      </footer>
     </>
   );
 }

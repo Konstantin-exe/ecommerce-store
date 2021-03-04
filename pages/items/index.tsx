@@ -3,11 +3,7 @@ import { css } from '@emotion/react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../../components/Layout';
-import {
-  storeItemList,
-  storeItemListSingle,
-  storeItemListInfo,
-} from '../../styles/styles';
+import { storeItemList, storeItemListSingle } from '../../styles/styles';
 
 type allProductsFromServer = {
   id: number;
@@ -40,7 +36,7 @@ export default function Store(props: Props) {
             </Link>
             <h4>{item.itemName} </h4>
             <p>{item.shortDescription}</p>
-            <div css={storeItemListInfo}>
+            <div>
               <p>In Stock: {item.quantity}</p>
               <p>price: {item.price} SHM</p>
             </div>

@@ -44,14 +44,6 @@ export const globalStyles = (
         }
       }
       body {
-        /* background-image: url('/img/page-background.png');
-        z-index: 1000000;
-        background-attachment: fixed;
-        background-size: center;
-        background-position: center;
-        background-repeat: no-repeat;
-        position: relative;
-        height: 100vh; */
         padding: 0;
         margin: 0;
         font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
