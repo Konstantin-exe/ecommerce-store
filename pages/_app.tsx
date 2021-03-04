@@ -1,10 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import type { AllProductsFromCart } from './items/[shopItemId]';
 import { css, Global } from '@emotion/react';
-import Image from 'next/image';
-import Cookies from 'js-cookie';
-import { useState, useEffect } from 'react';
-import Layout from '../components/Layout';
+import { useState } from 'react';
 import { AppProps } from 'next/app';
 
 export const globalStyles = (

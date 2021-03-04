@@ -1,4 +1,4 @@
-import { css, Global } from '@emotion/react';
+import { css } from '@emotion/react';
 
 // Home
 export const homeHeading = css`
@@ -275,7 +275,7 @@ export const footer = css`
 
 // Checkout Form
 
-export const CheckoutFormStyles = css`
+export const checkoutFormStyles = css`
   width: 50%;
   margin: auto;
 

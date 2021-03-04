@@ -1,11 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../../components/Layout';
 import { storeItemList, storeItemListSingle } from '../../styles/styles';
 
-type allProductsFromServer = {
+type AllProductsFromServer = {
   id: number;
   itemName: string;
   price: number;
@@ -15,7 +14,7 @@ type allProductsFromServer = {
   longDescription: string;
 };
 
-type Props = { itemInfos: allProductsFromServer[] };
+type Props = { itemInfos: AllProductsFromServer[] };
 
 export default function Store(props: Props) {
   console.log(props.itemInfos);

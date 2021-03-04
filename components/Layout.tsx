@@ -2,7 +2,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Cookies from 'js-cookie';
-import { navBar, navLinks, cartImg, footer, push } from '../styles/styles';
+import { navBar, navLinks, cartImg, footer } from '../styles/styles';
 
 type Props = {
   children: React.ReactNode;
@@ -50,7 +50,7 @@ export default function Layout(props: Props) {
         </nav>
       </header>
       {props.children}
-      <div css={push}></div>
+
       <footer css={footer}>
         <p>
           Though predated by another group in leadership in the Citadel, the

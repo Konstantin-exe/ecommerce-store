@@ -1,28 +1,30 @@
-import Head from 'next/head';
 import Link from 'next/link';
 import Cookies from 'js-cookie';
-import { carstSum, CheckoutFormStyles } from '../styles/styles';
+import { checkoutFormStyles } from '../styles/styles';
 
 export default function CheckoutForm() {
   return (
-    <div css={CheckoutFormStyles}>
+    <div css={checkoutFormStyles}>
       <h3>Billing Address</h3>
       <div className="row">
-        <div className="col-50"></div>
+        <div className="col-50" />
         <label HTMLfor="fname">
-          <i className="fa fa-user"></i> Full Name
+          <i className="fa fa-user" />
+          Full Name
         </label>
         <input type="text" id="fname" placeholder="Rick Sanchez" />
         <label HTMLfor="email">
-          <i className="fa fa-envelope"></i> Email
+          <i className="fa fa-envelope" />
+          Email
         </label>
         <input type="text" id="email" placeholder="rick@fakedomain.com" />
         <label HTMLfor="adr">
-          <i className="fa fa-address-card-o"></i> Address
+          <i className="fa fa-address-card-o" />
+          Address
         </label>
         <input type="text" id="adr" placeholder="542 W. 15th Street" />
         <label HTMLfor="city">
-          <i className="fa fa-institution"></i> City
+          <i className="fa fa-institution" /> City
         </label>
         <input type="text" id="city" placeholder="Seattle" />
 
