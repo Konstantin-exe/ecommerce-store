@@ -1,10 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
 import Link from 'next/link';
 import Head from 'next/head';
 import Layout from '../../components/Layout';
 import Cookies from 'js-cookie';
-import styles, {
+import {
   backToStoreButton,
   singleItemPage,
   singleItemPageBuyField,
@@ -37,14 +36,14 @@ type Props = {
 export default function ShopItem(props: Props) {
   const [quantity, setQuantity] = useState(1);
 
-  //----- rendering & setting cookies -----//
+  // ----- rendering & setting cookies -----//
   useEffect(() => {
     Cookies.set('cart', props.cart, { expires: 1 });
   }, [props.cart]);
 
-  //----- Adding Items to Cart -----//
+  // ----- Adding Items to Cart -----//
 
-  function addToCart(id: number, product: AllProductsFromCart) {
+  const addToCart = (id: number, product: AllProductsFromCart) => {
     const productAlreadyInCart = props.cart.find((cartItem) => {
       if (cartItem.id === id) {
         return true;
@@ -67,7 +66,7 @@ export default function ShopItem(props: Props) {
     });
     newCart[productIndex].quantity += quantity;
     return newCart;
-  }
+  };
 
   return (
     <Layout>

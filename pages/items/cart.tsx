@@ -1,17 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
-import Link from 'next/link';
 import Head from 'next/head';
 import Layout from '../../components/Layout';
 import Cookies from 'js-cookie';
-import styles, {
-  backToStoreButton,
-  cartItemLayout,
-  cartItemLayoutSingle,
-  singleItemPage,
-} from '../../styles/styles';
-import { useEffect, useState, useReducer } from 'react';
-import { networkInterfaces } from 'os';
+import { cartItemLayout, cartItemLayoutSingle } from '../../styles/styles';
+import { useEffect, useState } from 'react';
 import { GetServerSidePropsContext } from 'next';
 
 type AllProductsFromServer = {
