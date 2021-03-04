@@ -270,7 +270,6 @@ export const footer = css`
 
   img {
     justify-content: center;
-    margin: auto;
   }
 `;
 
@@ -378,4 +377,31 @@ export const cartSum = css`
   position: relative;
   text-align: right;
   margin: 100px;
+`;
+
+export const thankYouPage = css`
+  margin-bottom: 0px;
+  h2 {
+    margin-top: 0px;
+  }
+`;
+export const thankYouImg = css`
+  display: flex;
+  z-index: -1;
+  height: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: -100px;
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-50px);
+    }
+  }
+
+  animation: bounce 0.8s infinite alternate;
 `;

@@ -67,7 +67,7 @@ export default function CheckoutForm() {
         </div>
       </div>
       <div>
-        <Link href="/">
+        <Link href="../thankyou">
           <input
             type="submit"
             value="Continue to checkout"

@@ -59,7 +59,9 @@ export default function Layout(props: Props) {
           Rick Prime, Quantum Rick, Maximums Rickimus, Zeta Alpha Rick, and
           Ricktiminus Sancheziminius.{' '}
         </p>
-        <img src="/img/Council_of_Ricks.png" alt="council" width={250} />
+        <Link href="/fu">
+          <img src="/img/Council_of_Ricks.png" alt="council" width={250} />
+        </Link>
         <Link href="https://www.youtube.com/watch?v=RiL4kGE2-oQ">
           <p>© 1998-2666, Council of Rick Inc.</p>
         </Link>
