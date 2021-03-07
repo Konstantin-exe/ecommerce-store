@@ -116,7 +116,7 @@ export default function Cart(props: Props) {
             </div>
           ))}
           <div css={cartSum} key={Math.random()}>
-            <h2>Total: {handleTotal()}</h2>
+            <h2>Total: {handleTotal()} SMH</h2>
           </div>
           <CheckoutForm />
           <br />
