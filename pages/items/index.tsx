@@ -17,7 +17,6 @@ type AllProductsFromServer = {
 type Props = { itemInfos: AllProductsFromServer[] };
 
 export default function Store(props: Props) {
-  console.log(props.itemInfos);
   return (
     <Layout>
       <Head>

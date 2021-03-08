@@ -127,7 +127,6 @@ export default function Cart(props: Props) {
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  console.log('context', context);
   const { getItemInfo } = await import('../../utils/database');
 
   const id = Number(context.query.shopItemId);
