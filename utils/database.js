@@ -3,7 +3,7 @@ import camelcaseKeys from 'camelcase-keys';
 import setPostgresDefaultsOnHeroku from './setPostgresDefaultsOnHeroku';
 
 setPostgresDefaultsOnHeroku();
-require('dotenv-safe').config();
+// require('dotenv-safe').config();
 
 function connectOneTimeToDatabase() {
   let sql;
