@@ -10,10 +10,8 @@ type Props = {
 
 export default function Layout(props: Props) {
   const showCookieLength = Cookies.get('cart')
-    ? JSON.parse(Cookies.get('cart')).length
+    ? JSON.parse(Cookies.get('cart') || '').length
     : 0;
-
-  // useEffect(() => {}, [props.cart]);
 
   return (
     <>
