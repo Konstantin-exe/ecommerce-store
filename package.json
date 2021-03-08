@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p ${PORT:-\"3000\"}",
-    "migrate": "dotenv ley"
+    "migrate": "dotenv ley",
+    "cacheDirectories": [
+      ".next/cache"
+    ]
   },
   "dependencies": {
     "@emotion/react": "^11.1.5",
