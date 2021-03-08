@@ -9,7 +9,7 @@ function connectOneTimeToDatabase() {
   let sql;
 
   if (process.env.NODE_ENV === 'production') {
-    sql = postgres({ ssl: true });
+    sql = postgres({ rejectUnauthorized: false });
   } else {
     if (!globalThis.__postgresSqlClient) {
       globalThis.__postgresSqlClient = postgres();

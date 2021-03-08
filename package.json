@@ -5,11 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "heroku-postbuild": "yarn migrate up && yarn build",
     "start": "next start -p ${PORT:-\"3000\"}",
-    "migrate": "dotenv ley",
-    "cacheDirectories": [
-      ".next/cache"
-    ]
+    "migrate": "dotenv ley"
   },
   "dependencies": {
     "@emotion/react": "^11.1.5",
@@ -54,5 +52,8 @@
     "testPathIgnorePatterns": [
       "<rootDir>/cypress"
     ]
-  }
+  },
+  "cacheDirectories": [
+    ".next/cache"
+  ]
 }
